@@ -52,10 +52,10 @@ typedef struct mpl_int {
 
 void mpl_dbg(const mpl_int *a, FILE *fp);
 
-/* Initializes MP integer. */
+/* Initializes MPL integer. */
 int mpl_init(mpl_int *a);
 
-/* Releases all memory associated with MP integer. */
+/* Releases all memory associated with MPL integer. */
 void mpl_clear(mpl_int *a);
 
 /* Variable NULL-terminated list version of two routines above. */
@@ -69,13 +69,13 @@ int mpl_isone(const mpl_int *a);
 int mpl_isneg(const mpl_int *a);
 
 void mpl_set_one(mpl_int *a);
-void mpl_set_sint(mpl_int *a, long value);
-void mpl_set_uint(mpl_int *a, unsigned long value);
+void mpl_set_sint(mpl_int *a, int value);
+void mpl_set_uint(mpl_int *a, unsigned int value);
+int  mpl_set_uchar(mpl_int *a, const unsigned char *buf, int len);
 int  mpl_set_str(mpl_int *a, const char *str, int base);
-int  mpl_to_str(char *buf, int len, int base, const mpl_int *a);
 
-int mpl_set_uchar(mpl_int *a, const unsigned char *buf, int len);
 int mpl_to_uchar(const mpl_int *a, unsigned char *buf, int len);
+int mpl_to_str(char *buf, int len, int base, const mpl_int *a);
 
 int mpl_nr_bits(const mpl_int *a);
 
@@ -107,6 +107,10 @@ int mpl_abs_cmp(const mpl_int *a, const mpl_int *b);
 
 int mpl_copy(mpl_int *dst, const mpl_int *src);
 int mpl_swap(mpl_int *a, mpl_int *b);
+
+int mpl_and(mpl_int *c, const mpl_int *a, const mpl_int *b);
+int mpl_or(mpl_int *c, const mpl_int *a, const mpl_int *b);
+int mpl_xor(mpl_int *c, const mpl_int *a, const mpl_int *b);
 
 #ifdef __cplusplus
 }
