@@ -8,7 +8,7 @@
 #include "mpl_common.h"
 
 void
-mpl_set_sint(mpl_int *a, long val)
+mpl_set_sint(mpl_int *a, int val)
 {
 	int i, oldtop;
 	_mpl_int_t *dp;
@@ -30,7 +30,7 @@ mpl_set_sint(mpl_int *a, long val)
 }
 
 void
-mpl_set_uint(mpl_int *a, unsigned long val)
+mpl_set_uint(mpl_int *a, unsigned int val)
 {
 	int i, oldtop;
 	_mpl_int_t *dp;
