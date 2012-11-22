@@ -47,9 +47,6 @@ typedef struct mpl_int {
 	_mpl_int_t	*dig;	/* malloc'ed array of digits */
 } mpl_int;
 
-#define mpl_iseven(x)	(mpl_iszero(x) || (((x)->dig[0] & 0x1) == 0))
-#define mpl_isodd(x)	(((x)->top >= 0) && (((x)->dig[0] & 0x1) == 1))
-
 void mpl_dbg(const mpl_int *a, FILE *fp);
 
 /* Initializes MPL integer. */

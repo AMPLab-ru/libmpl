@@ -11,13 +11,6 @@
 #define _MPL_OR		1
 #define _MPL_XOR	2
 
-#define _MPL_make_and_fill(op, pad)		\
-	for (i = 0; i <= btop; i++)		\
-		*cp++ = (*ap++) op (*bp++);	\
-						\
-	for (i = btop+1; i < atop; i++)		\
-		*cp++ = pad;			\
-
 extern void mpl_canonicalize(mpl_int *a);
 
 static int
@@ -48,13 +41,28 @@ _mpl_bitwise(mpl_int *c, const mpl_int *a, const mpl_int *b, int op)
 	c->top = atop;
 	switch (op) {
 	case _MPL_AND:
-		_MPL_make_and_fill(&, 0)
+		for (i = 0; i <= btop; i++)
+			*cp++ = (*ap++) & (*bp++);
+
+		for (i = btop+1; i < atop; i++)	
+			*cp++ = 0;
+
 		break;
 	case _MPL_OR:
-		_MPL_make_and_fill(|, *ap++)
+		for (i = 0; i <= btop; i++)
+			*cp++ = (*ap++) | (*bp++);
+
+		for (i = btop+1; i < atop; i++)	
+			*cp++ = *ap++;
+
 		break;
 	case _MPL_XOR:
-		_MPL_make_and_fill(^, 1)
+		for (i = 0; i <= btop; i++)
+			*cp++ = (*ap++) ^ (*bp++);
+
+		for (i = btop+1; i < atop; i++)	
+			*cp++ = *ap++;
+
 		break;
 	}
 

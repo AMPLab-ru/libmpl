@@ -32,7 +32,8 @@ $(shared): %.so: $(objects)
 	gcc -shared -Wl,-soname,libmp.so -o $@ $^
 
 # installation
-install: $(shared) $(headers)
+.PHONY: install
+install:
 	cp $(shared) /usr/lib/
 	cp include/* /usr/include
 

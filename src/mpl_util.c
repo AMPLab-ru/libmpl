@@ -19,6 +19,18 @@ mpl_isone(const mpl_int *a)
 }
 
 int
+mpl_iseven(const mpl_int *a)
+{
+	return (mpl_iszero(a) || ((a->dig[0] & 0x1) == 0));
+}
+
+int
+mpl_isodd(const mpl_int *a)
+{
+	return ((!mpl_iszero(a)) && ((a->dig[0] & 0x1) == 1));
+}
+
+int
 mpl_isneg(const mpl_int *a)
 {
 	return (a->sign == MPL_SIGN_NEG);
