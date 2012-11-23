@@ -1,0 +1,26 @@
+.TH "mpl_gcd" "3" "23 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_gcd \- найти наибольший общий делитель
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_gcd(mpl_int *" c ", const mpl_int *" a ", const mpl_int *" b );
+.fi
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_gcd\fP записывает в \fIc\fP наибольший общий делитель
+чисел \fIa\fP и \fIb\fP.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функция возвращает \fBMPL_OK\fP в случае успеха,
+или \fBMPL_NOMEM\fP,
+если произошла ошибка.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3)

@@ -1,0 +1,24 @@
+.TH "mpl_mul_dig" "3" "23 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_mul_dig - умножить mpl_int на число
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_mul_dig(mpl_int *" c ", const mpl_int *" a ", _mpl_int_t " b );
+.fi
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_mul_dig\fP умножает \fIa\fP на положительное целое число,
+записанное в \fIb\fP.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функция возвращает \fBMPL_OK\fP в случае успеха,
+или \fBMPL_NOMEM\fP, если произошла ошибка.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_mul (3),
+.BR mpl_mul_ndig (3),
+.BR mpl (7)

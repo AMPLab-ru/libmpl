@@ -1,0 +1,26 @@
+.TH "mpl_sqr" "3" "23 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_sqr \- возвести число в квадрат
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_sqr(mpl_int *" c ", const mpl_int *" x );
+.fi
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_sqr\fP записывает в \fIc\fP
+результат возведения в квадрат числа \fIx\fP.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функция возвращает \fBMPL_OK\fP в случае успеха,
+или \fBMPL_NOMEM\fP,
+если произошла ошибка.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3)

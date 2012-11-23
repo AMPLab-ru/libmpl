@@ -1,0 +1,25 @@
+.TH "mpl_mul_ndig" "3" "23 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_mul_ndig - умножение нескольих разрядов двух чисел
+.
+.SH СИНТАКСИС
+.B #include <mpl.h>
+.sp
+.HP
+.BI "int mpl_mul_ndig(mpl_int *" c ", const mpl_int *" a ", const mpl_int *" b ", int " ndig );
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_mul_ndig\fP умножает \fIa\fP на \fIb\fP
+и сохраняет в \fIc\fP
+первые \fIndig\fP
+\fBMP_INT_BASE\fP-ичных разрядов произведения.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функция возвращает \fBMPL_OK\fP в случае успеха,
+или \fBMPL_NOMEM\fP, если произошла ошибка.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_mul (3),
+.BR mpl_mul_dig (3),
+.BR mpl (7)
