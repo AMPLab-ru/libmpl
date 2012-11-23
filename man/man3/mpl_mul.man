@@ -82,8 +82,12 @@ mpl_add, mpl_sub, mpl_mul, mpl_div \- простейшие арифметиче�
 .BR mpl_set_uint (3),
 .BR mpl_set_uchar (3),
 .BR mpl_set_str (3),
+.BR mpl_mul_dig (3),
+.BR mpl_mul_ndig (3),
 .BR mpl_sqr (3),
 .BR mpl_gcd (3),
+.BR mpl_primality_miller_rabin (3),
+.BR mpl_reduce_barrett
 .BR mpl_mod_exp (3),
 .BR mpl_mod_inv (3),
 .BR mpl_shr (3),
@@ -91,5 +95,7 @@ mpl_add, mpl_sub, mpl_mul, mpl_div \- простейшие арифметиче�
 .BR mpl_and (3),
 .BR mpl_or (3),
 .BR mpl_xor (3),
+.BR mpl_copy (3),
+.BR mpl_swap (3),
 .BR mpl_to_uchar (3),
 .BR mpl_to_str (3)
