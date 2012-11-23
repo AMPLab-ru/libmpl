@@ -1,0 +1,32 @@
+.TH "mpl_clearv" "3" "21 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_clear, mpl_clearv \- инициализирует переменные типа mpl_int
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "void mpl_clear(mpl_int *" a );
+.br
+.BI "void mpl_clearv(mpl_int *" a ", " "..." );
+.fi
+.
+.SH ОПИСАНИЕ
+Функции \fBmpl_clear\fP и \fBmpl_clearv\fP
+освобождают ресурсы, занимаемые переменными типа mpl_int.
+.sp
+Функция \fBmpl_clear\fP освобождает ресурсы переменной \fIa\fP.
+.sp
+Функция \fBmpl_clearv\fP освобождает ресурсы нескольких переменных.
+Список указателей, передаваемых в функцию,
+должен заканчиваться значением NULL.
+.
+.SH ЗАМЕЧАНИЯ
+Функции применимы только к инициализированным переменным.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_init (3),
+.BR mpl_initv (3),
+.BR mpl_to_uchar (3),
+.BR mpl_to_str (3)

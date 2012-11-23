@@ -1,0 +1,48 @@
+.TH "mpl_clear" "3" "22 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI
+.fi
+.
+.SH ОПИСАНИЕ
+
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+
+.
+.SH ОШИБКИ
+
+.
+.SH ЗАМЕЧАНИЯ
+
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_init (3),
+.BR mpl_initv (3),
+.BR mpl_copy (3),
+.BR mpl_swap (3),
+.BR mpl_set_uchar (3),
+.BR mpl_set_str (3),
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3),
+.BR mpl_sqr (3),
+.BR mpl_gcd (3),
+.BR mpl_random (3),
+.BR mpl_nr_bits (3),
+.BR mpl_mod_exp (3),
+.BR mpl_mod_inv (3),
+.BR mpl_shr (3),
+.BR mpl_shl (3),
+.BR mpl_and (3),
+.BR mpl_or (3),
+.BR mpl_xor (3),
+.BR mpl_to_uchar (3),
+.BR mpl_to_str (3)

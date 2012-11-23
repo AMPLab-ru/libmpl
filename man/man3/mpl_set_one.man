@@ -1,0 +1,48 @@
+.TH "mpl_set_one" "3" "22 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_set_one, mpl_set_sint, mpl_set_uint \- устанавливают переменные типа
+mp_int в небольшие значения
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "void mpl_set_one(mpl_int *" a );
+.br
+.BI "void mpl_set_sint(mpl_int *" a ", int "value );
+.br
+.BI "void mpl_set_uint(mpl_int *" a ", unsigned int "value );
+.fi
+.
+.SH ОПИСАНИЕ
+Эти функции предназначены для относительно быстрого присваивания
+небольших значений переменным типа mpl_int.
+.P
+Функция \fBmpl_set_one\fP устанавливает значение переменной \fIa\fP в 1.
+.P
+Функция \fBmpl_set_sint\fP записывает в переменную \fIa\fP
+число,
+содержащееся в младших
+.B MPL_INT_BITS
+.RB "(см. " mpl (7))
+переменной \fIvalue\fP,
+сохраняя у переменной \fIa\fP знак переменной \fIvalue\fP.
+.P
+Функция \fBmpl_set_uint\fP записывает в переменную \fIa\fP
+положительное число,
+содержащееся в младших
+.B MP_INT_BITS
+битах числа \fIvalue\fP.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_set_uchar (3),
+.BR mpl_set_str (3),
+.BR mpl_copy (3),
+.BR mpl_to_uchar (3),
+.BR mpl_to_str (3),
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3),
+.BR mpl_random (3)

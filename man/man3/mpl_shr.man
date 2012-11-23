@@ -1,0 +1,35 @@
+.TH "mpl_shr" "3" "23 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_shr, mpl_shl \- битовые сдвиги
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_shr(mpl_int *" a ", unsigned int " nr );
+.br
+.BI "int mpl_shl(mpl_int *" a ", unsigned int " nr );
+.fi
+.
+.SH ОПИСАНИЕ
+Функции \fBmpl_shr\fP и \fBmpl_shl\fP выполняют битовый сдвиг
+(вправо и влево соответственно)
+числа \fIa\fP
+на \fInr\fP битов.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функции возвращают \fBMPL_OK\fP в случае успеха,
+либо \fBMPL_NOMEM\fP в случае ошибки.
+.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_and (3),
+.BR mpl_or (3),
+.BR mpl_xor (3),
+.BR mpl_nr_bits (3),
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3),
+.BR mpl_random (3)

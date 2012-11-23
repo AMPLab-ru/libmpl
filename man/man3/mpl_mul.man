@@ -1,0 +1,95 @@
+.TH "mpl_mul" "3" "23 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_add, mpl_sub, mpl_mul, mpl_div \- простейшие арифметические действия
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_add(mpl_int *" c ", const mpl_int *" a ", conts mpl_int *" b );
+.br
+.BI "int mpl_sub(mpl_int *" c ", const mpl_int *" a ", conts mpl_int *" b );
+.br
+.BI "int mpl_mul(mpl_int *" c ", const mpl_int *" a ", conts mpl_int *" b );
+.br
+.BI "int mpl_div(mpl_int *" q ", mpl_int *" r ", const mpl_int *" y ", conts mpl_int *" x );
+.fi
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_add\fP складывает \fIa\fP и \fIb\fP
+и записывает сумму в \fIc\fP.
+.br
+.IR \tc " = " a " + " b
+.P
+Функция \fBmpl_sub\fP вычитает из \fIa\fP число \fIb\fP
+и записывает разность в \fIc\fP.
+.br
+.IR \tc " = " a " - " b
+.P
+Функция \fBmpl_mul\fP умножает \fIa\fP на \fIb\fP
+и записывает произведение в \fIc\fP.
+.br
+.IR \tc " = " a " * " b
+.P
+Функция \fBmpl_div\fP делит с остатком \fIy\fP на \fIx\fP
+и записывает частное в \fIq\fP,
+а остаток в \fIr\fP.
+.br
+.IR \tq " = " y " / " x
+.br
+.IR \tr " = " y " % " x
+.P
+Если остаток не нужен,
+то на место \fIr\fP можно подставить NULL:
+.nf
+	mpl_int a, b, c;
+.sp
+	...
+.sp
+	mpl_div(&c, NULL, &a, &b);
+.sp
+	...
+.fi
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Все функции возвращают \fBMPL_OK\fP в случае успеха,
+или \fBMPL_NOMEM\fP,
+если произошла ошибка.
+.P
+Функция \fBmpl_div\fP возвращает \fBMPL_ERR\fP,
+если делитель равен нулю.
+.
+.SH ЗАМЕЧАНИЯ
+Все функции могут использовать переменные-операнды
+как переменные для записи результата. К примеру:
+.br
+.nf
+	mpl_int a, b;
+.sp
+	...
+.sp
+	mpl_mul(&b, &b, &b);
+	mpl_add(&a, &a, &b);
+	mpl_div(&b, &a, &a, &b);
+.sp
+	...
+.fi
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_set_one (3),
+.BR mpl_set_sint (3),
+.BR mpl_set_uint (3),
+.BR mpl_set_uchar (3),
+.BR mpl_set_str (3),
+.BR mpl_sqr (3),
+.BR mpl_gcd (3),
+.BR mpl_mod_exp (3),
+.BR mpl_mod_inv (3),
+.BR mpl_shr (3),
+.BR mpl_shl (3),
+.BR mpl_and (3),
+.BR mpl_or (3),
+.BR mpl_xor (3),
+.BR mpl_to_uchar (3),
+.BR mpl_to_str (3)

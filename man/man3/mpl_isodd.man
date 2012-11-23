@@ -1,0 +1,55 @@
+.TH "mpl_isodd" "3" "22 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_iszero, mpl_isone, mpl_iseven, mpl_isodd, mpl_isneg \- проверяет
+свойства переменной типа mp_int
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_iszero(mpl_int *" a );
+.br
+.BI "int mpl_isone(mpl_int *" a );
+.br
+.BI "int mpl_iseven(mpl_int *" a );
+.br
+.BI "int mpl_isodd(mpl_int *" a );
+.br
+.BI "int mpl_isneg(mpl_int *" a );
+.fi
+.
+.SH ОПИСАНИЕ
+Эти функции проверяют свойства переменной \fIa\fP.
+.TP
+.BR mpl_iszero ()
+проверяет,
+является ли \fIa\fP нулём.
+.TP
+.BR mpl_isone ()
+проверяет,
+является ли \fIa\fP единицей.
+.TP
+.BR mpl_iseven ()
+проверяет,
+является ли \fIa\fP чётным числом.
+.TP
+.BR mpl_isodd ()
+проверяет,
+является ли \fIa\fP нечётным числом.
+.TP
+.BR mpl_isneg ()
+проверяет,
+является ли \fIa\fP отрицательным числом.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Возвращает 1,
+если переменная \fIa\fP обладает интересующим свойством,
+иначе возвращает 0.
+.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_set_one (3),
+.BR mpl_set_sint (3),
+.BR mpl_set_uint (3),
+.BR mpl_set_uchar (3),
+.BR mpl_set_str (3)

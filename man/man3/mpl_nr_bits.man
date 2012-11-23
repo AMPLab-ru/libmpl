@@ -1,0 +1,23 @@
+.TH "mpl_nr_bits" "3" "23 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_nr_bits \- длина числа в битах
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "long int mpl_nr_bits(const mpl_int " a );
+.fi
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_nr_bits\fP вычисляет количество значащих бит числа \fIa\fP.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Возвращает количество значащих бит числа \fIa\fP.
+.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_random (3),
+.BR mpl_shr (3),
+.BR mpl_shl (3)

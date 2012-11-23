@@ -14,10 +14,14 @@ objects  = mpl_init.o mpl_clear.o mpl_util.o mpl_set.o mpl_ensure.o\
 
 binaries = mplc
 
-shared   = libmp.so
+shared   = libmpl.so
 
 vpath %.c src
 vpath %.h include
+
+# shared targets
+$(shared): %.so: $(objects)
+	gcc -shared -Wl,-soname,libmp.so -o $@ $^
 
 # binary targets
 $(binaries): %: %.c $(objects)
@@ -27,15 +31,12 @@ $(binaries): %: %.c $(objects)
 $(objects): %.o: %.c $(headers)
 	gcc $(CFLAGS) -fPIC -c -o $@ $<
 
-# shared targets
-$(shared): %.so: $(objects)
-	gcc -shared -Wl,-soname,libmp.so -o $@ $^
-
 # installation
 .PHONY: install
 install:
 	cp $(shared) /usr/lib/
 	cp include/* /usr/include
+	cd ./man/man3/; make; make install
 
 .PHONY: clean
 clean:
