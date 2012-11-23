@@ -63,6 +63,8 @@ void mpl_zero(mpl_int *a);
 
 int mpl_iszero(const mpl_int *a);
 int mpl_isone(const mpl_int *a);
+int mpl_iseven(const mpl_int *a);
+int mpl_isodd(const mpl_int *a);
 int mpl_isneg(const mpl_int *a);
 
 void mpl_set_one(mpl_int *a);
@@ -72,9 +74,9 @@ int  mpl_set_uchar(mpl_int *a, const unsigned char *buf, int len);
 int  mpl_set_str(mpl_int *a, const char *str, int base);
 
 int mpl_to_uchar(const mpl_int *a, unsigned char *buf, int len);
-int mpl_to_str(char *buf, int len, int base, const mpl_int *a);
+int mpl_to_str(const mpl_int *a, char *str, int base, int len);
 
-int mpl_nr_bits(const mpl_int *a);
+long int mpl_nr_bits(const mpl_int *a);
 
 int mpl_shr(mpl_int *a, unsigned int nr);
 int mpl_shl(mpl_int *a, unsigned int nr);

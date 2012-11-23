@@ -5,7 +5,7 @@
 #include "mpl.h"
 
 int
-mpl_to_str(char *buf, int len, int base, const mpl_int *a)
+mpl_to_str(const mpl_int *a, char *str, int base, int len)
 {
 	mpl_int x, y, r;
 	int i, rc, nb, cmp;
@@ -19,13 +19,13 @@ mpl_to_str(char *buf, int len, int base, const mpl_int *a)
 	for (i = base; i > 0; i >>= 1)
 		nb++;
 
-	/* estimate the lenght of buf */
+	/* estimate the lenght of str */
 	if (len < mpl_nr_bits(a)/nb + 3)
 		return MPL_ERR;
 
 	if (mpl_iszero(a)) {
-		*buf++ =  '0';
-		*buf   = '\0';
+		*str++ =  '0';
+		*str   = '\0';
 		return MPL_OK;
 	}
 
@@ -38,11 +38,11 @@ mpl_to_str(char *buf, int len, int base, const mpl_int *a)
 	mpl_set_uint(&x, base);
 
 	if (mpl_isneg(&y)) {
-		*buf++ = '-';
+		*str++ = '-';
 		y.sign = MPL_SIGN_POS;
 	}
 
-	sp = buf;
+	sp = str;
 	cmp = mpl_cmp(&y, &x);
 	while (cmp == MPL_CMP_GT || cmp == MPL_CMP_EQ) {
 		rc = mpl_div(&y, &r, &y, &x);
@@ -70,7 +70,7 @@ mpl_to_str(char *buf, int len, int base, const mpl_int *a)
 	*sp-- = '\0';
 
 	end = sp;
-	sp = buf;
+	sp = str;
 
 	while (sp < end) {
 		char tmp;

@@ -84,11 +84,12 @@ mpl_swap(mpl_int *a, mpl_int *b)
 	return MPL_OK;
 }
 
-int
+long int
 mpl_nr_bits(const mpl_int *a)
 {
 	_mpl_int_t dig;
-	int res, cnt;
+	long int res;
+	int cnt;
 
 	if (mpl_iszero(a))
 		return 0;

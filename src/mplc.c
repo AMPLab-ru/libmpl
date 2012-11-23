@@ -36,8 +36,6 @@ struct function {
 	int (*func)(int argc, char **argv);
 };
 
-extern int mpl_to_str(char *buf, int len, int base, const mpl_int *a);
-
 void stk_init(void);
 void stk_grow(int n);
 void stk_free(void);
@@ -380,7 +378,7 @@ func_pop(int argc, char **argv)
 	if (buf == NULL)
 		return NO_MEMORY;
 
-	res = mpl_to_str(buf, len, 10, a);
+	res = mpl_to_str(a, buf, 10, len);
 	switch (res) {
 	case MPL_NOMEM:
 		res = NO_MEMORY;
