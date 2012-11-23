@@ -1,4 +1,4 @@
-.TH "mpl_clear" "3" "22 ноября 2012" "Linux" "MPL Functions Manual"
+.TH "mpl_" "3" "22 ноября 2012" "Linux" "MPL Functions Manual"
 .
 .SH ИМЯ
 
