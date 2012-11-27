@@ -37,8 +37,16 @@ install:
 	cp $(shared) /usr/lib/
 	cp include/mpl.h /usr/include
 	cd ./man/man3/; make; make install
+	cd ./man/man7/; make; make install
+
+.PHONY: remove
+remove:
+	rm -f /usr/lib/$(shared)
+	rm -f /usr/include/mpl.h
+	cd ./man/man3/; make remove
+	cd ./man/man7/; make remove
 
 .PHONY: clean
 clean:
-	rm -f $(binaries) $(objects) $(shared)
+	rm -f $(objects)
 
