@@ -1,0 +1,42 @@
+.TH "mpl_mod_inv" "3" "27 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_mod_inv \-
+найти обратное по модулю число
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_mod_inv(mpl_int *" c ", const mpl_int *" a ", const mpl_int *"b );
+.fi
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_mod_inv\fP записывает в \fIc\fP число,
+обратное по модулю \fIb\fP числу \fIa\fP.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функция \fBmpl_mod_inv\fP возвращает \fBMPL_OK\fP в случае успеха,
+либо сообщение об ошибке,
+если произошли ошибка.
+.
+.SH ОШИБКИ
+.TP 1.1i
+.B MPL_ERR
+функции были переданы неверные входные параметры.
+.TP
+.B MPL_NOMEM
+для работы функции недостаточно памяти.
+.
+.SH ЗАМЕЧАНИЯ
+Математическая запись того,
+что делает функция:
+.P
+.IR "\tc " = " x" ": " ax " = 1 (mod " b );
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3),
+.BR mpl_mod_exp (3)

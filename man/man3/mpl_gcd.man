@@ -23,4 +23,5 @@ mpl_gcd \- найти наибольший общий делитель
 .BR mpl_add (3),
 .BR mpl_sub (3),
 .BR mpl_div (3),
-.BR mpl_mul (3)
+.BR mpl_mul (3),
+.BR mpl_primality_miller_rabin (3)

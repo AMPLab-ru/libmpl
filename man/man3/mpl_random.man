@@ -1,0 +1,47 @@
+.TH "mpl_random" "3" "24 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_random \- сгенерировать случайное число
+.
+.SH СИНТАКСИС
+.B #include <mpl.h>
+.HP
+.BI "int mpl_random(mpl_int *" a ", int " size ,
+.br
+.BI "int (*" rnd ")(void *" buf ", size_t " len ", void *" rndctx "), void *" rndctx );
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_random\fP записывает в \fIa\fP случайное число
+размера \fIsize\fP байт.
+.P
+Источником энтропии служит функция \fBrnd\fP,
+которая записывает в буфер \fIbuf\fP длины \fIlen\fP случайные байты,
+возможно,
+используя контекст \fIrndctx\fP.
+.P
+Функция \fBrnd\fP должна возвращать количество байтов,
+записанных в \fIbuf\fP, либо -1 в случае ошибки.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функция \fBmpl_random\fP возвращает \fBMPL_OK\fP в случае успеха,
+или сообщение об ошибке в случае ошибки.
+.
+.SH ОШИБКИ
+.TP 1.1i
+.B MPL_NOMEM
+для работы функции не хватило памяти.
+.TP
+.B MPL_ERR
+функция \fBrnd\fP вернула -1.
+.nh
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_set_one (3),
+.BR mpl_set_sint (3),
+.BR mpl_set_uint (3),
+.BR mpl_set_uchar (3),
+.BR mpl_nr_bits (3),
+.BR mpl_shr (3),
+.BR mpl_shl (3),
+.BR mpl_to_uchar (3),
+.BR mpl_primality_miller_rabin (3)

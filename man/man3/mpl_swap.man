@@ -1,0 +1,26 @@
+.TH "mpl_swap" "3" "27 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_swap \-
+поменять местами
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_swap(mpl_int *" a ", mpl_int *" b );
+.fi
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_swap\fP меняет местами значения
+в переменных \fIa\fP и \fIb\fP.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Возвращает \fBMPL_OK\fP в случае успеха.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_copy (3),
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3)

@@ -1,0 +1,53 @@
+.TH "mpl_primality_miller_rabin" "3" "27 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_primality_miller_rabin - проверить число на простоту
+.
+.SH СИНТАКСИС
+.B #include <mpl.h>
+.HP
+.BI "mpl_primality_miller_rabin(const mpl_int *" a ", int " r
+.br
+.BI "int (*" rnd ")(void *" buf ", size_t " len ", void *" rndctx "), void *" rndctx );
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_primality_miller_rabin\fP проверяет число \fIa\fP
+на простоту
+методом Миллера-Рабина,
+пытаясь найти \fIr\fP свидетелей простоты.
+.P
+Функция \fBrnd\fP служит источником энтропии,
+и записывает в буфер \fIbuf\fP длины \fIlen\fP случайные байты,
+возможно,
+используя контекст \fIrndctx\fP.
+.P
+Функция \fBrnd\fP должна возвращать количество байтов,
+записанных в \fIbuf\fP, либо -1 в случае ошибки.
+.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функция \fBmpl_miller_rabin\fP возвращает \fBMPL_OK\fP,
+если число \fIa\fP - простое,
+\fBMPL_COMPOSITE\fP, если \fIa\fP - составное,
+либо сообщение об ошибке,
+если произошла ошибка.
+.
+.SH ОШИБКИ
+.TP 1.1i
+.B MPL_ERR
+один из переданных аргументов имеет неверное значение.
+.B MPL_NOMEM
+для работы функции недостаточно памяти.
+.
+.SH ЗАМЕЧАНИЯ
+Функция \fBmpl_primality_miller_rabin\fP не гарантирует
+верного определения простоты числа со стопроцентной вероятностью.
+.
+.nh
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3),
+.BR mpl_gcd (3),
+.BR mpl_random (3)

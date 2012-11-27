@@ -9,17 +9,17 @@
 #define MPL_MODEXP_STACK	128
 
 int
-mpl_mod_exp(mpl_int *res, const mpl_int *a, const mpl_int *y, const mpl_int *b)
+mpl_mod_exp(mpl_int *c, const mpl_int *a, const mpl_int *y, const mpl_int *b)
 {
 
 	mpl_int w[MPL_MODEXP_STACK];
-	mpl_int e, c, mu, z;
+	mpl_int e, s, mu, z;
 	_mpl_int_t *dp, buffer;
 	int i, k, nbits, rc;
 	int do_single;
 	unsigned int mask, x, n, tmp, cnt;
 
-	if ((rc = mpl_initv(&e, &c, &mu, &z, NULL)) != MPL_OK)
+	if ((rc = mpl_initv(&e, &s, &mu, &z, NULL)) != MPL_OK)
 		return rc;
 
 	if (mpl_isneg(y)) {
@@ -65,7 +65,7 @@ mpl_mod_exp(mpl_int *res, const mpl_int *a, const mpl_int *y, const mpl_int *b)
 		goto err;
 
 	/* c = 1 */
-	mpl_set_one(&c);
+	mpl_set_one(&s);
 
 	/* prepare reduction constant */
 	rc = mpl_reduce_barrett_setup(&mu, b);
@@ -121,11 +121,11 @@ mpl_mod_exp(mpl_int *res, const mpl_int *a, const mpl_int *y, const mpl_int *b)
 		/* Check most significant bit of the bit buffer. */
 		if ((buffer & (1 << (nbits-1))) == 0) {
 			/* c = c^2 mod b */
-			rc = mpl_sqr(&c, &c);
+			rc = mpl_sqr(&s, &s);
 			if (rc != MPL_OK)
 				goto err;
 
-			rc = mpl_reduce_barrett(&c, &c, b, &mu);
+			rc = mpl_reduce_barrett(&s, &s, b, &mu);
 			if (rc != MPL_OK)
 				goto err;
 
@@ -173,21 +173,21 @@ mpl_mod_exp(mpl_int *res, const mpl_int *a, const mpl_int *y, const mpl_int *b)
 
 		/* c = c^2k mod b  */
 		for (i = 0; i < k; i++) {
-			rc = mpl_sqr(&c, &c);
+			rc = mpl_sqr(&s, &s);
 			if (rc != MPL_OK)
 				goto err;
-			rc = mpl_reduce_barrett(&c, &c, b, &mu);
+			rc = mpl_reduce_barrett(&s, &s, b, &mu);
 			if (rc != MPL_OK)
 				goto err;
 		}
 
 		/* c = c * a[x] */
 		tmp = (1 << (k-1))-1;
-		rc = mpl_mul(&c, &c, &w[x & tmp]);
+		rc = mpl_mul(&s, &s, &w[x & tmp]);
 		if (rc != MPL_OK)
 			goto err;
 
-		rc = mpl_reduce_barrett(&c, &c, b, &mu);
+		rc = mpl_reduce_barrett(&s, &s, b, &mu);
 		if (rc != MPL_OK)
 			goto err;
 	}
@@ -196,19 +196,19 @@ mpl_mod_exp(mpl_int *res, const mpl_int *a, const mpl_int *y, const mpl_int *b)
 
 		while (n > 0) {
 			/* c = c^2 */
-			rc = mpl_sqr(&c, &c);
+			rc = mpl_sqr(&s, &s);
 			if (rc != MPL_OK)
 				goto err;
-			rc = mpl_reduce_barrett(&c, &c, b, &mu);
+			rc = mpl_reduce_barrett(&s, &s, b, &mu);
 			if (rc != MPL_OK)
 				goto err;
 
 			if (x & (1 << (n-1))) {
 				/* c = c * a mod b*/
-				rc = mpl_mul(&c, &c, &z);
+				rc = mpl_mul(&s, &s, &z);
 				if (rc != MPL_OK)
 					goto err;
-				rc = mpl_reduce_barrett(&c, &c, b, &mu);
+				rc = mpl_reduce_barrett(&s, &s, b, &mu);
 				if (rc != MPL_OK)
 					goto err;
 			}
@@ -216,7 +216,7 @@ mpl_mod_exp(mpl_int *res, const mpl_int *a, const mpl_int *y, const mpl_int *b)
 		}
 	}
 
-	rc = mpl_copy(res, &c);
+	rc = mpl_copy(c, &s);
 	if (rc != MPL_OK)
 		goto err;
 
@@ -226,7 +226,7 @@ err:
 	for (i = 0; i < (1 << (k-1)); i++)
 		mpl_clear(&w[i]);
 end:
-	mpl_clearv(&c, &e, &mu, &z, NULL);
+	mpl_clearv(&s, &e, &mu, &z, NULL);
 
 	return rc;
 }

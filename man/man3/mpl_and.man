@@ -1,0 +1,49 @@
+.TH "mpl_and" "3" "27 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_and,
+mpl_or,
+mpl_xor \-
+выполнить побитовую операцию
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_and(mpl_int *" c ", const mpl_int *" a ", const mpl_int *" b );
+.br
+.BI "int mpl_or(mpl_int *" c ", const mpl_int *" a ", const mpl_int *" b );
+.br
+.BI "int mpl_xor(mpl_int *" c ", const mpl_int *" a ", const mpl_int *" b );
+.br
+.fi
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_and\fP записывает в \fIc\fP результат
+побитового И чисел \fIa\fP и \fIb\fP.
+.br
+.IR "\tc " = " a " & " b"
+.P
+Функция \fBmpl_or\fP записывает в \fIc\fP результат
+побитового ИЛИ чисел \fIa\fP и \fIb\fP.
+.br
+.IR "\tc " = " a " | " b"
+.P
+Функция \fBmpl_xor\fP записывает в \fIc\fP результат
+побитового ИСКЛЮЧАЮЩЕГО ИЛИ чисел \fIa\fP и \fIb\fP.
+.br
+.IR "\tc " = " a " ^ " b"
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Все три функции возвращают \fBMPL_OK\fP в случае успеха,
+либо \fBMPL_NOMEM\fP,
+если произошла ошибка.
+.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3),
+.BR mpl_shr (3),
+.BR mpl_shl (3)

@@ -29,4 +29,5 @@ mpl_clear, mpl_clearv \- инициализирует переменные ти�
 .BR mpl_init (3),
 .BR mpl_initv (3),
 .BR mpl_to_uchar (3),
-.BR mpl_to_str (3)
+.BR mpl_to_str (3),
+.BR mpl_dbg (3)

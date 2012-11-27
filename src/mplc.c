@@ -439,7 +439,7 @@ func_bits(int argc, char **argv)
 	mpl_int *a;
 
 	a = stk(0);
-	printf("%i\n", mpl_nr_bits(a));
+	printf("%li\n", mpl_nr_bits(a));
 
 	return OK;
 }

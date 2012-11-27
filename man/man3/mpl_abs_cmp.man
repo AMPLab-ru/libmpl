@@ -1,0 +1,40 @@
+.TH "mpl_abs_cmp" "3" "27 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_cmp \-
+сравнить переменные mpl_int
+.
+.SH СИНТАКСИС
+.nf
+.B #include <mpl.h>
+.sp
+.BI "int mpl_cmp(const mpl_int *" a ", const mpl_int *" b );
+.br
+.BI "int mpl_abs_cmp(const mpl_int *" a ", const mpl_int *" b );
+.fi
+.
+.SH ОПИСАНИЕ
+Функция \fImpl_cmp\fP сравнивает числа
+\fIa\fP и \fIb\fP.
+.P
+Функция \fImpl_abs_cmp\fP сравнивает числа
+\fIa\fP и \fIb\fP по модулю
+(их абсолютные значения).
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функции возвращают:
+.TP 1.1i
+.B MPL_CMP_GT
+если \fIa\fP больше \fIb\fP.
+.TP
+.B MPL_CMP_LT
+если \fIa\fP меньше \fIb\fP.
+.TP
+.B MPL_CMP_GT
+если \fIa\fP и \fIb\fP равны.
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3)

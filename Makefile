@@ -35,7 +35,7 @@ $(objects): %.o: %.c $(headers)
 .PHONY: install
 install:
 	cp $(shared) /usr/lib/
-	cp include/* /usr/include
+	cp include/mpl.h /usr/include
 	cd ./man/man3/; make; make install
 
 .PHONY: clean

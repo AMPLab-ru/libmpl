@@ -38,7 +38,6 @@ mp_int в небольшие значения
 .SH "СМОТРИ ТАКЖЕ"
 .BR mpl_set_uchar (3),
 .BR mpl_set_str (3),
-.BR mpl_copy (3),
 .BR mpl_to_uchar (3),
 .BR mpl_to_str (3),
 .BR mpl_add (3),

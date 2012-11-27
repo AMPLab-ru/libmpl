@@ -1,0 +1,50 @@
+.TH "mpl_reduce_barrett_setup" "3" "27 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_reduce_barrett_setup,
+mpl_reduce_barrett \-
+редукция по модулю методом Барретта
+.
+.SH СИНТАКСИС
+.B #include <mpl.h>
+.sp
+.BI "int mpl_reduce_barrett_setup(mpl_int *" mu ", const mpl_int *" b );
+.HP
+.BI "int mpl_reduce_barrett(mpl_int *" c ", const mpl_int *" a ", const mpl_int *" b ,
+.BI "const mpl_int *" mu );
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_reduce_barrett_setup\fP вычисляет \fImu\fP,
+необходимое для редукции по модулю \fIb\fP.
+.P
+Функция \fBmpl_reduce_barrett\fP выполняет редукцию числа \fIa\fP
+по модулю \fIb\fP,
+записывая результат редукции в \fIc\fP.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Обе функции возвращают \fBMPL_OK\fP в случае успеха,
+либо сообщение об ошибке в случае ошибки.
+.
+.SH ОШИБКИ
+.TP 1.1i
+.B MPL_NOMEM
+для работы функции недостаточно памяти.
+.TP
+.B MPL_ERR
+число \fIa\fP не нуждается в редукции,
+т.к. оно меньше,
+чем модуль \fIb\fP.
+.
+.SH ЗАМЕЧАНИЯ
+.P
+Редукция по модулю,
+которую выполняет функция \fBmpl_reduce_barrett\fP,
+математически записывается так:
+.br
+.IR "\tc " = " a " (mod " b" )
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3)

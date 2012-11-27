@@ -1,0 +1,39 @@
+.TH "mpl_mod_exp" "3" "23 ноября 2012" "Linux" "MPL Functions Manual"
+.
+.SH ИМЯ
+mpl_mod_exp \-
+возвести в степень по модулю
+.
+.SH СИНТАКСИС
+.B #include <mpl.h>
+.sp
+.HP
+.BI "int mpl_mod_exp(mpl_int *" res ", const mpl_int *" a ", const mpl_int *" y ,
+.BI "const mpl_int *" b );
+.
+.SH ОПИСАНИЕ
+Функция \fBmpl_mod_exp\fP записывает в \fIres\fP 
+результат возведения числа \fIa\fP в степнь \fIy\fP
+по модулю \fIb\fP.
+.
+.SH "ВОЗВРАЩАЕМОЕ ЗНАЧЕНИЕ"
+Функция \fBmpl_mod_exp\fP возвращает \fBMPL_OK\fP в случае успеха,
+либо сообщение об ошибки, если произошла ошибка.
+.
+.SH ОШИБКИ
+.TP 1.1i
+.B MPL_ERR
+функции были переданы неверные входные параметры.
+.TP
+.B MPL_NOMEM
+для работы функции недостаточно памяти.
+.
+.SH ЗАМЕЧАНИЯ
+
+.
+.SH "СМОТРИ ТАКЖЕ"
+.BR mpl_add (3),
+.BR mpl_sub (3),
+.BR mpl_div (3),
+.BR mpl_mul (3),
+.BR mpl_mod_inv (3)
