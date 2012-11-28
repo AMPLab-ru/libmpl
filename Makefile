@@ -34,13 +34,13 @@ $(objects): %.o: %.c $(headers)
 # installation
 .PHONY: install
 install:
-	cp $(shared) /usr/lib/
-	cp include/mpl.h /usr/include
+	install $(shared) /usr/lib/
+	install include/mpl.h /usr/include
 	cd ./man/man3/; make; make install
 	cd ./man/man7/; make; make install
 
-.PHONY: remove
-remove:
+.PHONY: uninstall
+uninstall:
 	rm -f /usr/lib/$(shared)
 	rm -f /usr/include/mpl.h
 	cd ./man/man3/; make remove
@@ -48,5 +48,5 @@ remove:
 
 .PHONY: clean
 clean:
-	rm -f $(objects)
+	rm -f $(objects) $(shared) $(binaries)
 
