@@ -1,3 +1,5 @@
+CC	 = gcc
+
 CFLAGS   = -I include -Wall
 
 headers  = mpl.h mpl_common.h
@@ -14,22 +16,22 @@ objects  = mpl_init.o mpl_clear.o mpl_util.o mpl_set.o mpl_ensure.o\
 
 binaries = mplc
 
-shared   = libmpl.so
+lib	 = libmpl.so
 
 vpath %.c src
 vpath %.h include
 
 # shared targets
-$(shared): %.so: $(objects)
-	gcc -shared -Wl,-soname,libmp.so -o $@ $^
+$(lib): %.so: $(objects)
+	$(CC) -shared -Wl,-soname,$@ -o $@ $^
 
 # binary targets
 $(binaries): %: %.c $(objects)
-	gcc $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 # object targets
 $(objects): %.o: %.c $(headers)
-	gcc $(CFLAGS) -fPIC -c -o $@ $<
+	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
 
 # installation
 .PHONY: install
@@ -48,5 +50,5 @@ uninstall:
 
 .PHONY: clean
 clean:
-	rm -f $(objects) $(shared) $(binaries)
+	rm -f $(objects) $(lib) $(binaries)
 

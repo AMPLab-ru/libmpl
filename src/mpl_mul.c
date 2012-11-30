@@ -10,6 +10,7 @@
 
 extern void mpl_canonicalize(mpl_int *a);
 
+/* This function is useless and written just for fun. */
 int
 _mpl_mul_toom_three(mpl_int *c, const mpl_int *a, const mpl_int *b)
 {
