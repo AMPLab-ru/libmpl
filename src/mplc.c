@@ -12,7 +12,7 @@
 
 #include "mpl.h"
 
-#define	BUFSIZE	LINE_MAX
+#define	BUFSIZE	4096
 #define	STKSIZE	128
 #define	ARGVMAX	2
 

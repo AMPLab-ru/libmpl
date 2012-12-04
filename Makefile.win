@@ -1,4 +1,4 @@
-CC = gcc
+CC = i586-mingw32msvc-gcc
 
 CFLAGS = -I include -Wall
 
@@ -14,35 +14,21 @@ objects = mpl_init.o mpl_clear.o mpl_util.o mpl_set.o mpl_ensure.o\
 	   mpl_to.o mpl_sqr.o mpl_gcd.o mpl_random.o mpl_primality.o\
 	   mpl_reduce.o mpl_mod_exp.o mpl_mod_inv.o mpl_mul.o
 
-binaries = mplc
+binaries = mplc.exe
 
-libfile = libmpl.so
+libfile = libmpl.dll
 
 vpath %.c src
 vpath %.h include
 
-$(lib): %.so: $(objects)
+$(libfile): %.dll: $(objects)
 	$(CC) -shared -Wl,-soname,$@ -o $@ $^
 
-%: %.c $(objects)
-	$(CC) $(CFLAGS) -o $@ $^
+%.exe: %.c $(libfile)
+	$(CC) $(CFLAGS) -o $@ $^ -L./ -l mpl
 
 $(objects): %.o: %.c $(headers)
-	$(CC) $(CFLAGS) -fPIC -c -o $@ $<
-
-.PHONY: install
-install:
-	install $(shared) /usr/lib/
-	install include/mpl.h /usr/include
-	cd ./man/man3/; make; make install
-	cd ./man/man7/; make; make install
-
-.PHONY: uninstall
-uninstall:
-	rm -f /usr/lib/$(shared)
-	rm -f /usr/include/mpl.h
-	cd ./man/man3/; make remove
-	cd ./man/man7/; make remove
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 .PHONY: clean
 clean:
