@@ -75,6 +75,7 @@ int  mpl_set_str(mpl_int *a, const char *str, int base);
 
 int mpl_to_uchar(const mpl_int *a, unsigned char *buf, int len);
 int mpl_to_str(const mpl_int *a, char *str, int base, int len);
+int mpl_to_uint(mpl_int *a, unsigned long *val);
 
 long int mpl_nr_bits(const mpl_int *a);
 
@@ -86,6 +87,7 @@ int mpl_sub(mpl_int *c, const mpl_int *a, const mpl_int *b);
 int mpl_mul(mpl_int *c, const mpl_int *a, const mpl_int *b);
 int mpl_mul_ndig(mpl_int *c, const mpl_int *a, const mpl_int *b, int ndig);
 int mpl_mul_dig(mpl_int *c, const mpl_int *a, _mpl_int_t b);
+int mpl_exp(mpl_int *c, const mpl_int *a, const mpl_int *b);
 int mpl_div(mpl_int *q, mpl_int *r, const mpl_int *y, const mpl_int *x);
 int mpl_sqr(mpl_int *c, const mpl_int *x);
 

@@ -87,3 +87,21 @@ err:
 	return rc;
 }
 
+int 
+mpl_to_uint(mpl_int *a, unsigned long *val)
+{
+	int nbits;
+
+	nbits = mpl_nr_bits(a);
+
+	if (nbits > sizeof(int) * CHAR_BIT)
+		return MPL_ERR;
+
+	*val = a->dig[0];
+	if (nbits > MPL_INT_BITS) {
+		*val <<= MPL_INT_BITS;
+		*val += a->dig[1];
+	}
+
+	return MPL_OK;
+}
