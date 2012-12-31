@@ -21,8 +21,11 @@ libfile = libmpl.so
 vpath %.c src
 vpath %.h include
 
-$(lib): %.so: $(objects)
+$(libfile): %.so: $(objects)
 	$(CC) -shared -Wl,-soname,$@ -o $@ $^
+
+$(binaries): mplc.o $(libfile)
+	$(CC) $(CFLAGS) -o $@ $^ -L./ -l mpl
 
 %: %.c $(objects)
 	$(CC) $(CFLAGS) -o $@ $^
@@ -32,14 +35,14 @@ $(objects): %.o: %.c $(headers)
 
 .PHONY: install
 install:
-	install $(shared) /usr/lib/
+	install $(libfile) /usr/lib/
 	install include/mpl.h /usr/include
 	cd ./man/man3/; make; make install
 	cd ./man/man7/; make; make install
 
 .PHONY: uninstall
 uninstall:
-	rm -f /usr/lib/$(shared)
+	rm -f /usr/lib/$(libfile)
 	rm -f /usr/include/mpl.h
 	cd ./man/man3/; make remove
 	cd ./man/man7/; make remove
