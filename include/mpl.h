@@ -109,10 +109,6 @@ int mpl_abs_cmp(const mpl_int *a, const mpl_int *b);
 int mpl_copy(mpl_int *dst, const mpl_int *src);
 int mpl_swap(mpl_int *a, mpl_int *b);
 
-int mpl_and(mpl_int *c, const mpl_int *a, const mpl_int *b);
-int mpl_or(mpl_int *c, const mpl_int *a, const mpl_int *b);
-int mpl_xor(mpl_int *c, const mpl_int *a, const mpl_int *b);
-
 #ifdef __cplusplus
 }
 #endif
