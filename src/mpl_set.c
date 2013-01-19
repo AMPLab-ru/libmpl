@@ -37,7 +37,11 @@ mpl_set_uint(mpl_int *a, unsigned int val)
 
 	oldtop = a->top;
 
-	a->top = 0;
+	if (val == 0)
+		a->top = -1;
+	else
+		a->top = 0;
+
 	a->sign = MPL_SIGN_POS;
 	a->dig[0] = val & MPL_INT_MASK;
 
@@ -45,6 +49,7 @@ mpl_set_uint(mpl_int *a, unsigned int val)
 
 	for (i = 1; i <= oldtop; i++)
 		*dp++ = 0;
+
 }
 
 int
