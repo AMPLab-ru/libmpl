@@ -41,8 +41,8 @@ install:
 uninstall:
 	rm -f /usr/lib/$(libfile)
 	rm -f /usr/include/mpl.h
-	cd ./man/man3/; make remove
-	cd ./man/man7/; make remove
+	cd ./man/man3/; make uninstall
+	cd ./man/man7/; make uninstall
 
 .PHONY: clean
 clean:
