@@ -47,4 +47,6 @@ uninstall:
 .PHONY: clean
 clean:
 	rm -f $(objects) $(libfile) $(binaries)
+	cd ./man/man3/; make clean
+	cd ./man/man3/; make clean
 

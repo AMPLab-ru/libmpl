@@ -14,8 +14,8 @@ all: $(pages)
 install:
 	install $(pages) $(man3dir)
 
-.PHONY: uninstall
-uninstall:
+.PHONY: remove
+remove:
 	cd $(man3dir); rm -f $(pages)
 
 .PHONY: clean
