@@ -5,7 +5,6 @@ CFLAGS = -I include -Wall
 headers = mpl.h mpl_common.h
 
 sources = mpl_init.c mpl_clear.c mpl_util.c mpl_set.c mpl_ensure.c\
-<<<<<<< HEAD
 	   mpl_div.c mpl_add.c mpl_sub.c mpl_shift.c mpl_copy.c mpl_cmp.c\
 	   mpl_to.c mpl_sqr.c mpl_gcd.c mpl_random.c mpl_primality.c\
 	   mpl_reduce.c mpl_exp.c mpl_mod_exp.c mpl_mod_inv.c mpl_mul.c\
