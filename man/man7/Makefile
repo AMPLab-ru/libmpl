@@ -1,22 +1,22 @@
-pages   = mpl.3.gz
+pages   = mpl.7.gz
 
-man3dir = /usr/share/man/man3/
+man7dir = /usr/share/man/man7/
 
 all: $(pages)
 
-%.3.gz: %.3
+%.7.gz: %.7
 	gzip $<
 
-%.3: %.man
+%.7: %.man
 	cp $< $@
 
 .PHONY: install
 install:
-	install $(pages) $(man3dir)
+	install $(pages) $(man7dir)
 
 .PHONY: uninstall
 uninstall:
-	cd $(man3dir); rm -f $(pages)
+	cd $(man7dir); rm -f $(pages)
 
 .PHONY: clean
 clean:
