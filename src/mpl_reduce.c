@@ -54,19 +54,6 @@ mpl_reduce_barrett(mpl_int *c, const mpl_int *a, const mpl_int *b, const mpl_int
 	if (rc != MPL_OK)
 		goto err;
 
-	rc = mpl_shr(&q, 1);
-	if (rc != MPL_OK)
-		goto err;
-
-	if (mpl_abs_cmp(&q, b) == MPL_CMP_LT) {
-		rc = MPL_ERR;
-		goto err;
-	}
-
-	rc = mpl_copy(&q, a);
-	if (rc != MPL_OK)
-		goto err;
-
 	rc = mpl_shr(&q, (m-1)*MPL_INT_BITS);
 	if (rc != MPL_OK)
 		goto err;
