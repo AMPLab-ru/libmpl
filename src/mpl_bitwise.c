@@ -89,3 +89,18 @@ mpl_xor(mpl_int *c, const mpl_int *a, const mpl_int *b)
 	return _mpl_bitwise(c, a, b, _MPL_XOR);
 }
 
+int
+mpl_check_bit(const mpl_int *a, unsigned long int n)
+{
+	int m;
+
+	m = mpl_nr_bits(a);
+	if (n >= m)
+		return -1;
+
+	m = n / MPL_INT_BITS;
+	n = n % MPL_INT_BITS;
+
+	return (((a->dig[m]) >> n) & 0x1);
+}
+

@@ -111,6 +111,8 @@ int mpl_and(mpl_int *c, const mpl_int *a, const mpl_int *b);
 int mpl_or(mpl_int *c, const mpl_int *a, const mpl_int *b);
 int mpl_xor(mpl_int *c, const mpl_int *a, const mpl_int *b);
 
+int mpl_check_bit(const mpl_int *a, unsigned long int n);
+
 #ifdef __cplusplus
 }
 #endif

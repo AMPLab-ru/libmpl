@@ -47,7 +47,7 @@ mpl_reduce_barrett(mpl_int *c, const mpl_int *a, const mpl_int *b, const mpl_int
 	if (mpl_abs_cmp(a, b) == MPL_CMP_LT)
 		return MPL_OK;
 
-	if ((2*mpl_nr_bits(b)) =< mpl_nr_bits(a))
+	if ((2*mpl_nr_bits(b)) <= mpl_nr_bits(a))
 		return MPL_ERR;
 
 	if ((rc = mpl_initv(&q, NULL)) != MPL_OK)
