@@ -15,6 +15,12 @@ mpl_set_sint(mpl_int *a, int val)
 
 	oldtop = a->top;
 
+	if (val == 0)
+		a->top = -1;
+	else
+		a->top = 0;
+
+
 	a->top = 0;
 	a->sign = (val >= 0 ? MPL_SIGN_POS : MPL_SIGN_NEG);
 

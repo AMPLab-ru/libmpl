@@ -90,9 +90,12 @@ mpl_xor(mpl_int *c, const mpl_int *a, const mpl_int *b)
 }
 
 int
-mpl_check_bit(const mpl_int *a, unsigned long int n)
+mpl_check_bit(const mpl_int *a, long int n)
 {
-	int m;
+	long int m;
+
+	if (n < 0)
+		return -1;
 
 	m = mpl_nr_bits(a);
 	if (n >= m)
