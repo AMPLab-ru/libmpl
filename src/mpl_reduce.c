@@ -110,11 +110,6 @@ mpl_reduce_barrett(mpl_int *c, const mpl_int *a, const mpl_int *b, const mpl_int
 			goto err;
 	}
 
-/*
-	rc = mpl_div(&q, c, c, b);
-	if (rc != MPL_OK)
-		goto err;
-*/
 	rc = MPL_OK;
 err:
 	mpl_clearv(&q, NULL);

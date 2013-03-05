@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "mpl.h"
 #include "mpl_common.h"
@@ -57,6 +56,7 @@ void
 mpl_canonicalize(mpl_int *a)
 {
 	int top;
+
 	top = a->top;
 
 	while (top >= 0 && a->dig[top] == 0)
