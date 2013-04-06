@@ -47,21 +47,11 @@ mpl_reduce_barrett(mpl_int *c, const mpl_int *a, const mpl_int *b, const mpl_int
 	if (mpl_abs_cmp(a, b) == MPL_CMP_LT)
 		return MPL_OK;
 
+	if ((2*mpl_nr_bits(b)) <= mpl_nr_bits(a))
+		return MPL_ERR;
+
 	if ((rc = mpl_initv(&q, NULL)) != MPL_OK)
 		return rc;
-
-	rc = mpl_copy(&q, a);
-	if (rc != MPL_OK)
-		goto err;
-
-	rc = mpl_shr(&q, 1);
-	if (rc != MPL_OK)
-		goto err;
-
-	if (mpl_abs_cmp(&q, b) == MPL_CMP_LT) {
-		rc = MPL_ERR;
-		goto err;
-	}
 
 	rc = mpl_copy(&q, a);
 	if (rc != MPL_OK)

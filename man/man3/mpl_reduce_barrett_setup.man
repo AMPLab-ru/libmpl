@@ -1,4 +1,4 @@
-.TH "mpl_reduce_barrett_setup" "3" "27 ноября 2012" "Linux" "MPL Functions Manual"
+.TH "mpl_reduce_barrett" "3" "27 ноября 2012" "Linux" "MPL Functions Manual"
 .
 .SH ИМЯ
 mpl_reduce_barrett_setup,
@@ -31,9 +31,7 @@ mpl_reduce_barrett \-
 для работы функции недостаточно памяти.
 .TP
 .B MPL_ERR
-число \fIa\fP не нуждается в редукции,
-т.к. оно меньше,
-чем модуль \fIb\fP.
+число бит \fIa\fP больше, чем удвоенное число бит \fIb\fP.
 .
 .SH ЗАМЕЧАНИЯ
 .P

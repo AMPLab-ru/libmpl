@@ -30,7 +30,7 @@ mpl_cmp \-
 .B MPL_CMP_LT
 если \fIa\fP меньше \fIb\fP.
 .TP
-.B MPL_CMP_GT
+.B MPL_CMP_EQ
 если \fIa\fP и \fIb\fP равны.
 .
 .SH "СМОТРИ ТАКЖЕ"

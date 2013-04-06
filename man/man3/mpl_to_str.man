@@ -9,7 +9,7 @@ mpl_set_str, mpl_to_str - запись/чтение значения из стр
 .sp
 .BI "int mpl_set_str(mpl_int *" a ", const char *" str ", int " base );
 .br
-.BI "int mpl_to_str(const mpl_int *" a ", const char *" str ", int " base ", int " len );
+.BI "int mpl_to_str(const mpl_int *" a ", char *" str ", int " base ", int " len );
 .fi
 .
 .SH ОПИСАНИЕ
