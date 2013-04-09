@@ -102,6 +102,7 @@ int mpl_reduce_barrett(mpl_int *c, const mpl_int *a, const mpl_int *b, const mpl
 
 int mpl_mod_inv(mpl_int *c, const mpl_int *a, const mpl_int *b);
 int mpl_mod_exp(mpl_int *c, const mpl_int *a, const mpl_int *y, const mpl_int *b);
+int mpl_mod_exp_simple(mpl_int *c, const mpl_int *a, const mpl_int *y, const mpl_int *b);
 
 int mpl_cmp(const mpl_int *a, const mpl_int *b);
 int mpl_abs_cmp(const mpl_int *a, const mpl_int *b);

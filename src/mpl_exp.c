@@ -7,11 +7,14 @@
 
 extern void mpl_canonicalize(mpl_int *a);
 
+/* Simple binary exponentiation algorithm. */
 int
 mpl_exp(mpl_int *c, const mpl_int *a, const mpl_int *b)
 {
 	mpl_int res, tmp, u, v;
 	int rc;
+
+	rc = MPL_ERR;
 
 	if ((rc = mpl_initv(&res, &tmp, &u, &v, NULL)) != MPL_OK)
 		return rc;

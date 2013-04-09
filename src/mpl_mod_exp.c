@@ -231,3 +231,69 @@ end:
 	return rc;
 }
 
+static int
+mpl_mod_mul(mpl_int *c, const mpl_int *a, const mpl_int *b, const mpl_int *m)
+{
+	mpl_int tmp;
+	int rc;
+
+	rc = MPL_ERR;
+
+	mpl_init(&tmp);
+
+	if (mpl_mul(c, a, b) != MPL_OK)
+		goto end;
+	
+	rc = mpl_div(&tmp, c, c, m);
+
+end:
+	mpl_clear(&tmp);
+	return rc;
+}
+
+int
+mpl_mod_exp_simple(mpl_int *c, const mpl_int *a, const mpl_int *y, const mpl_int *b)
+{
+	mpl_int res, tmp, u, v;
+	int rc;
+
+	rc = MPL_ERR;
+
+	if ((rc = mpl_initv(&res, &tmp, &u, &v, NULL)) != MPL_OK)
+		return rc;
+
+	rc = mpl_copy(&u, a);
+	if (rc != MPL_OK)
+		goto err;
+
+	rc = mpl_copy(&v, y);
+	if (rc != MPL_OK)
+		goto err;
+	
+	mpl_set_one(&res);
+
+	while(!mpl_iszero(&v)) {
+		if (mpl_isodd(&v)) {
+			mpl_mod_mul(&res, &res, &u, b);
+			if (rc != MPL_OK)
+				goto err;
+		}
+		
+		rc = mpl_shr(&v, 1);
+		if (rc != MPL_OK)
+			goto err;
+		
+		rc = mpl_mod_mul(&u, &u, &u, b);
+		if (rc != MPL_OK)
+			goto err;
+	}
+
+	mpl_copy(c, &res);
+	mpl_canonicalize(c);
+
+	rc = MPL_OK;
+err:
+	mpl_clearv(&res, &tmp, &u, &v, NULL);
+	return rc;
+}
+
