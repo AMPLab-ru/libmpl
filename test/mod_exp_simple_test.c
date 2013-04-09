@@ -11,9 +11,9 @@ main(int argc, const char *argv[])
 
 	mpl_initv(&a, &b, &c, &d, NULL);
 
-	mpl_set_sint(&a, 44444);
-	mpl_set_sint(&b, 34);
-	mpl_set_sint(&c, 31);
+	mpl_set_sint(&a, 0);
+	mpl_set_sint(&b, 0);
+	mpl_set_sint(&c, 0);
 
 	if (mpl_mod_exp_simple(&d, &a, &b, &c) != MPL_OK) {
 		printf("error occured\n");
