@@ -11,7 +11,7 @@ extern void mpl_canonicalize(mpl_int *a);
 int
 mpl_div(mpl_int *q, mpl_int *r, const mpl_int *y, const mpl_int *x)
 {
-	mpl_int u, v, tmp;
+	mpl_int res, u, v, tmp;
 	_mpl_int_t dig;
 	int norm, cnt, rc;
 	int ytop, ysign;
@@ -26,12 +26,16 @@ mpl_div(mpl_int *q, mpl_int *r, const mpl_int *y, const mpl_int *x)
 			if ((rc = mpl_copy(r, y)) != MPL_OK)
 				return rc;
 		}
-		mpl_zero(q);
+		if (q != NULL)
+			mpl_zero(q);
 		return MPL_OK;
 	}
 
-	if ((rc = mpl_initv(&u, &v, &tmp, NULL)) != MPL_OK)
+	if ((rc = mpl_initv(&u, &v, &tmp, &res, NULL)) != MPL_OK)
 		return rc;
+
+	if (q == NULL)
+		q = &res;
 
 	if ((rc = mpl_copy(&u, y)) != MPL_OK)
 		goto err;
@@ -192,7 +196,7 @@ mpl_div(mpl_int *q, mpl_int *r, const mpl_int *y, const mpl_int *x)
 	mpl_canonicalize(q);
 	rc = MPL_OK;
 err:
-	mpl_clearv(&u, &v, &tmp, NULL);
+	mpl_clearv(&u, &v, &tmp, &res, NULL);
 	return rc;
 }
 

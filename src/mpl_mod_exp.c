@@ -9,19 +9,6 @@
 #define MPL_MODEXP_STACK	128
 
 static int
-mpl_mod(mpl_int *c, const mpl_int *a, const mpl_int *b)
-{
-	mpl_int tmp;
-	int rc;
-
-	mpl_init(&tmp);
-	rc = mpl_div(&tmp, c, a, b);
-	mpl_clear(&tmp);
-
-	return rc;
-}
-
-static int
 mpl_mod_mul(mpl_int *c, const mpl_int *a, const mpl_int *b, const mpl_int *m)
 {
 	int rc;
@@ -31,7 +18,7 @@ mpl_mod_mul(mpl_int *c, const mpl_int *a, const mpl_int *b, const mpl_int *m)
 	if (mpl_mul(c, a, b) != MPL_OK)
 		goto end;
 	
-	rc = mpl_mod(c, c, m);
+	rc = mpl_div(NULL, c, c, m);
 
 end:
 	return rc;
@@ -88,8 +75,8 @@ mpl_mod_exp(mpl_int *c, const mpl_int *a, const mpl_int *y, const mpl_int *b)
 		++cnt;
 	}
 
-	//reduce Z
-	mpl_mod(&z, &z, b);
+	/* reduce Z */
+	mpl_div(NULL, &z, &z, b);
 
 	/* e = a */
 	rc = mpl_copy(&e, &z);
