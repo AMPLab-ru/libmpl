@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -I include -Wall
+CFLAGS = -I include -Wall -ggdb
 
 headers = mpl.h mpl_common.h
 

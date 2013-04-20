@@ -76,7 +76,9 @@ mpl_mod_exp(mpl_int *c, const mpl_int *a, const mpl_int *y, const mpl_int *b)
 	}
 
 	/* reduce Z */
-	mpl_div(NULL, &z, &z, b);
+	rc = mpl_div(NULL, &z, &z, b);
+	if (rc != MPL_OK)
+		goto err;
 
 	/* e = a */
 	rc = mpl_copy(&e, &z);
