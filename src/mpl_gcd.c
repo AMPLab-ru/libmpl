@@ -15,6 +15,13 @@ mpl_gcd(mpl_int *c, const mpl_int *a, const mpl_int *b)
 	if ((rc = mpl_initv(&u, &v, NULL)) != MPL_OK)
 		return rc;
 
+	if (mpl_iszero(a) && mpl_iszero(b))
+		return MPL_ERR;
+	else if (mpl_iszero(a))
+		return mpl_copy(c, b);
+	else if (mpl_iszero(b))
+		return mpl_copy(c, a);
+
 	x.dig = a->dig;
 	x.alloc = a->alloc;
 	x.top = a->top;
