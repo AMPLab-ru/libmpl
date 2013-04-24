@@ -94,7 +94,7 @@ mpl_to_uint(mpl_int *a, unsigned long *val)
 
 	nbits = mpl_nr_bits(a);
 
-	if (nbits > sizeof(int) * CHAR_BIT)
+	if (mpl_isneg(a) || nbits > sizeof(int) * CHAR_BIT)
 		return MPL_ERR;
 
 	*val = a->dig[0];
