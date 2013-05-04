@@ -93,7 +93,9 @@ int mpl_sqr(mpl_int *c, const mpl_int *x);
 
 int mpl_gcd(mpl_int *c, const mpl_int *a, const mpl_int *b);
 
+int _mpl_random_bits(mpl_int *a, long nbits, int (*rnd)(void *buf, size_t size, void *rndctx), void *rndctx);
 int mpl_random(mpl_int *a, int size, int (*rnd)(void *buf, size_t len, void *rndctx), void *rndctx);
+int mpl_rand_below(mpl_int *b, mpl_int *a, int (*rnd)(void *buf, size_t size, void *rndctx), void *rndctx);
 
 int mpl_primality_miller_rabin(const mpl_int *a, int r, int (*rnd)(void *buf, size_t len, void *rndctx), void *rndctx);
 

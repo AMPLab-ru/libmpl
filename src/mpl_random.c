@@ -8,21 +8,23 @@
 #include "mpl_common.h"
 
 int
-mpl_random(mpl_int *a, int size,
+_mpl_random_bits(mpl_int *a, long nbits,
 	  int (*rnd)(void *buf, size_t size, void *rndctx),
 	  void *rndctx)
 {
+	/* nc - n bits in c */
 	unsigned char buf[1024], *bufptr;
 	_mpl_int_t *dig;
 	int i, nb, nc, rc, ns;
 	int nbuf, ndig, oldtop;
-	int nbits;
+	int size;
 	unsigned char c;
 
-	ndig = (size * CHAR_BIT) / MPL_INT_BITS;
-	ndig += (size * CHAR_BIT) % MPL_INT_BITS ? 1 : 0;
+	ndig = nbits / MPL_INT_BITS;
+	ndig += nbits % MPL_INT_BITS ? 1 : 0;
 
-	nbits = size * CHAR_BIT;
+	size = nbits / CHAR_BIT;
+	size += nbits % CHAR_BIT ? 1 : 0;
 
 	if ((rc = mpl_ensure(a, ndig)) != MPL_OK)
 		return rc;
@@ -43,11 +45,14 @@ mpl_random(mpl_int *a, int size,
 
 		*dig = 0;
 			
+		/* current mpl word */
 		while (nb > 0) {
 
 			if (nc <= 0) {
+				/* get next char into c */
 
 				if (nbuf <= 0) {
+					/* get entropy to buffer */
 					int nread, res;
 
 					nread = (size >= sizeof(buf)) ? sizeof(buf) : size;
@@ -63,15 +68,7 @@ mpl_random(mpl_int *a, int size,
 
 				c = *bufptr++;
 
-				/*
-				 * Last random byte is required to have two top
-				 * bits set. This guarantees that the
-				 * multiplication of two such values will always
-				 * produce carry to the top bit of the result.
-				 */
-				if (size == 1)
-					c |= 0xc0;
-
+			
 				nc = CHAR_BIT;
 				--nbuf;
 			}
@@ -97,8 +94,78 @@ mpl_random(mpl_int *a, int size,
 	for (i = ndig; i <= oldtop; i++)
 		*dig++ = 0;
 
+	mpl_canonicalize(a);
+
 	rc = MPL_OK;
 out:
+	return rc;
+}
+
+int
+mpl_random(mpl_int *a, int size,
+	  int (*rnd)(void *buf, size_t size, void *rndctx),
+	  void *rndctx)
+{
+	int nc, rc;
+	int offset, ndig;
+	_mpl_int_t *dig;
+	unsigned char c;
+
+	if (size == 0)
+		return MPL_ERR;
+
+	ndig = (size * CHAR_BIT) / MPL_INT_BITS;
+	ndig += (size * CHAR_BIT) % MPL_INT_BITS ? 1: 0;
+	
+	if ((rc = mpl_ensure(a, ndig)) != MPL_OK)
+		return rc;
+
+	if ((rc = _mpl_random_bits(a, size * CHAR_BIT, rnd, rndctx)) != MPL_OK)
+		return rc;
+
+	/*
+	 * Last random byte is required to have two top
+	 * bits set. This guarantees that the
+	 * multiplication of two such values will always
+	 * produce carry to the top bit of the result.
+	 */
+	/* shift to start of last byte */
+	dig = a->dig + ((size - 1) * CHAR_BIT) / MPL_INT_BITS;
+
+	offset = ((size - 1) * CHAR_BIT) % MPL_INT_BITS;
+	c = 0xc0;
+
+	*dig |= (MPL_INT_MASK & (c << offset));
+	if (offset > MPL_INT_BITS - CHAR_BIT) {
+		dig++;
+		*dig |= (c >> (MPL_INT_BITS - offset));
+	}
+
+	a->top = ndig - 1;
+
+	mpl_canonicalize(a);
+
+	return MPL_OK;
+}
+
+/* return random number b from range [0; a) */
+int
+mpl_rand_below(mpl_int *b, mpl_int *a, 
+	  int (*rnd)(void *buf, size_t size, void *rndctx),
+	  void *rndctx)
+{
+	long size;
+	int rc;
+
+	size = mpl_nr_bits(a);
+
+	do {
+		if ((rc = _mpl_random_bits(b, size, rnd, rndctx)) != MPL_OK)
+			goto err;
+	} while (mpl_cmp(a, b) <= 0);
+
+	return MPL_OK;
+err:
 	return rc;
 }
 
