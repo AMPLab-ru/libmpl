@@ -72,6 +72,18 @@ main(int argc, const char *argv[])
 	test_random(&r, 4);
 	test_random(&r, 4);
 
+	test_random(&r, 5);
+	test_random(&r, 5);
+
+	test_random(&r, 6);
+	test_random(&r, 6);
+
+	test_random(&r, 7);
+	test_random(&r, 7);
+
+	test_random(&r, 8);
+	test_random(&r, 8);
+
 	mpl_clear(&r);
 	return 0;
 }
