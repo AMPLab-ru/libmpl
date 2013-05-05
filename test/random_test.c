@@ -1,51 +1,17 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
 #include "../include/mpl.h"
+#include "common.h"
 
-int 
-urandom(void *buf, int len, void *unused)
-{
-	int fd;
-	int rc;
-
-	fd = open("/dev/urandom", O_RDONLY);
-	if (fd == -1)
-		return -1;
-
-	rc = read(fd, buf, len);
-
-	close(fd);
-	return rc;
-}
-
-int 
-null(void *buf, int len, void *unused)
-{
-	int fd;
-	int rc;
-
-	fd = open("/dev/null", O_RDONLY);
-	if (fd == -1)
-		return -1;
-
-	rc = read(fd, buf, len);
-
-	close(fd);
-	return rc;
-}
 
 void
 test_random(mpl_int *r, int size)
 {
 	char buf[1024];
 
-	if (mpl_random(r, size, null, NULL) != MPL_OK) {
+	if (mpl_random(r, size, rand_null, NULL) != MPL_OK) {
 		printf("mpl_random fail\n");
 		return;
 	}

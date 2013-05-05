@@ -106,42 +106,39 @@ mpl_random(mpl_int *a, int size,
 	  int (*rnd)(void *buf, size_t size, void *rndctx),
 	  void *rndctx)
 {
-	int nc, rc;
+	int rc;
 	int offset, ndig;
 	_mpl_int_t *dig;
 	unsigned char c;
 
-	if (size == 0)
-		return MPL_ERR;
 
 	ndig = (size * CHAR_BIT) / MPL_INT_BITS;
 	ndig += (size * CHAR_BIT) % MPL_INT_BITS ? 1: 0;
 	
-	if ((rc = mpl_ensure(a, ndig)) != MPL_OK)
-		return rc;
-
 	if ((rc = _mpl_random_bits(a, size * CHAR_BIT, rnd, rndctx)) != MPL_OK)
 		return rc;
 
-	/*
-	 * Last random byte is required to have two top
-	 * bits set. This guarantees that the
-	 * multiplication of two such values will always
-	 * produce carry to the top bit of the result.
-	 */
-	/* shift to start of last byte */
-	dig = a->dig + ((size - 1) * CHAR_BIT) / MPL_INT_BITS;
+	if (size != 0) {
+		/*
+		 * Last random byte is required to have two top
+		 * bits set. This guarantees that the
+		 * multiplication of two such values will always
+		 * produce carry to the top bit of the result.
+		 */
+		/* shift to start of last byte */
+		dig = a->dig + ((size - 1) * CHAR_BIT) / MPL_INT_BITS;
 
-	offset = ((size - 1) * CHAR_BIT) % MPL_INT_BITS;
-	c = 0xc0;
+		offset = ((size - 1) * CHAR_BIT) % MPL_INT_BITS;
+		c = 0xc0;
 
-	*dig |= (MPL_INT_MASK & (c << offset));
-	if (offset > MPL_INT_BITS - CHAR_BIT) {
-		dig++;
-		*dig |= (c >> (MPL_INT_BITS - offset));
+		*dig |= (MPL_INT_MASK & (c << offset));
+		if (offset > MPL_INT_BITS - CHAR_BIT) {
+			dig++;
+			*dig |= (c >> (MPL_INT_BITS - offset));
+		}
+
+		a->top = ndig - 1;
 	}
-
-	a->top = ndig - 1;
 
 	mpl_canonicalize(a);
 

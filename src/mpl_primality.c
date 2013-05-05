@@ -77,13 +77,14 @@ brk_loop:
 			goto out;
 	}
 
-	/* Number of random bytes one digit less then m. */
+	/* Number of random bytes one digit less than m. */
 	n = (m->top * MPL_INT_BITS) / CHAR_BIT;
 
 	for (i = 0; i < r; i++) {
 		int j;
 
-		rc = mpl_random(&a, n, rnd, rndctx);
+		//rc = mpl_random(&a, n, rnd, rndctx);
+		rc = mpl_rand_below(&a, &m_minus_one, rnd, rndctx);
 		if (rc != MPL_OK)
 			goto out;
 

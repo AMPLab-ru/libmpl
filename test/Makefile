@@ -9,10 +9,13 @@ DIVTEST=divtest
 MOD_EXP_OBJECTS=mod_exp_simple_test.o
 MOD_EXP_TEST=modexptest
 
-RANDOM_OBJECTS=random_test.o
+RANDOM_OBJECTS=random_test.o common.o
 RANDOM_TEST=randomtest
 
-all: $(DIVTEST) $(MOD_EXP_TEST) $(RANDOM_TEST)
+PRIMALITY_OBJECTS=primality_test.o common.o
+PRIMALITY_TEST=primalitytest
+
+all: $(DIVTEST) $(MOD_EXP_TEST) $(RANDOM_TEST) $(PRIMALITY_TEST)
 
 .c.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $^ -o $@
@@ -24,6 +27,9 @@ $(MOD_EXP_TEST): $(MOD_EXP_OBJECTS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIBS)
 
 $(RANDOM_TEST): $(RANDOM_OBJECTS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIBS)
+
+$(PRIMALITY_TEST): $(PRIMALITY_OBJECTS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIBS)
 
 clean:
