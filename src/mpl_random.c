@@ -7,6 +7,8 @@
 #include "mpl.h"
 #include "mpl_common.h"
 
+extern void mpl_canonicalize(mpl_int *a);
+
 int
 _mpl_random_bits(mpl_int *a, long nbits,
 	  int (*rnd)(void *buf, size_t size, void *rndctx),

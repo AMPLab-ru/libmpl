@@ -93,16 +93,22 @@ mpl_div(mpl_int *q, mpl_int *r, const mpl_int *y, const mpl_int *x)
 		if (n < t)
 			break;
 		cnt = (n - t) * MPL_INT_BITS;
-		mpl_shl(&v, cnt);
+
+		if ((rc = mpl_shl(&v, cnt)) != MPL_OK)
+			goto err;
+
 		if (mpl_abs_cmp(&u, &v) != MPL_CMP_LT) {
 			do {
 				++q->dig[n-t];
 				if ((rc = mpl_sub(&u, &u, &v)) != MPL_OK)
 					goto err;
 			} while (mpl_abs_cmp(&u, &v) != MPL_CMP_LT);
-			mpl_shr(&v, cnt);
+
+			if ((rc = mpl_shr(&v, cnt)) != MPL_OK)
+				goto err;
 		} else {
-			mpl_shr(&v, cnt);
+			if ((rc = mpl_shr(&v, cnt)) != MPL_OK)
+				goto err;
 			break;
 		}
 	}
@@ -187,7 +193,9 @@ mpl_div(mpl_int *q, mpl_int *r, const mpl_int *y, const mpl_int *x)
 	}
 
 	if (r != NULL) {
-		mpl_copy(r, &u);
+		if ((rc = mpl_copy(r, &u)) != MPL_OK)
+			goto err;
+
 		if (norm > 0)
 			mpl_shr(r, norm);
 		r->sign = ysign;

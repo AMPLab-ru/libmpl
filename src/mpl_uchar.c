@@ -7,6 +7,8 @@
 #include "mpl.h"
 #include "mpl_common.h"
 
+extern void mpl_canonicalize(mpl_int *a);
+
 int
 mpl_to_uchar(const mpl_int *a, unsigned char *buf, int len)
 {

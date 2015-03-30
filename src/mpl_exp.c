@@ -31,7 +31,7 @@ mpl_exp(mpl_int *c, const mpl_int *a, const mpl_int *b)
 
 	while(!mpl_iszero(&v)) {
 		if (mpl_isodd(&v)) {
-			mpl_mul(&res, &res, &u);
+			rc = mpl_mul(&res, &res, &u);
 			if (rc != MPL_OK)
 				goto err;
 		}
@@ -45,7 +45,10 @@ mpl_exp(mpl_int *c, const mpl_int *a, const mpl_int *b)
 			goto err;
 	}
 
-	mpl_copy(c, &res);
+	rc = mpl_copy(c, &res);
+	if (rc != MPL_OK)
+		goto err;
+
 	mpl_canonicalize(c);
 
 	rc = MPL_OK;

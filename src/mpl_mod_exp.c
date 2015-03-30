@@ -8,6 +8,8 @@
 
 #define MPL_MODEXP_STACK	128
 
+extern void mpl_canonicalize(mpl_int *a);
+
 static int
 mpl_mod_mul(mpl_int *c, const mpl_int *a, const mpl_int *b, const mpl_int *m)
 {
@@ -290,7 +292,10 @@ mpl_mod_exp_simple(mpl_int *c, const mpl_int *a, const mpl_int *y, const mpl_int
 			goto err;
 	}
 
-	mpl_copy(c, &res);
+	rc = mpl_copy(c, &res);
+	if (rc != MPL_OK)
+		goto err;
+
 	mpl_canonicalize(c);
 
 	rc = MPL_OK;
